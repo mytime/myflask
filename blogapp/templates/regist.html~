@@ -1,0 +1,7 @@
+<h1>用户注册</h1>
+<table>
+{% for field in form %}
+	<tr><td>{{field.label}}</td><td>{{field}}</td></tr>
+	<tr><td><input type="submit" value = "用户注册"</td></tr>
+{% endfor %}
+</table>

@@ -1,0 +1,7 @@
+from wtforms import Form,TextField, PasswordField
+
+class RegistForm(Form):
+	username = TextField()
+	email = TextField()
+	password = PasswordField()
+	repassword = PassowrdField()
