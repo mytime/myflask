@@ -1,7 +1,20 @@
 <h1>用户注册</h1>
+<form method="post">
 <table>
 {% for field in form %}
-	<tr><td>{{field.label}}</td><td>{{field}}</td></tr>
-	<tr><td><input type="submit" value = "用户注册"</td></tr>
+	<tr><td>{{field.label}}</td>
+	<td>{{field}}</td>
+	<td>
+		<!--输出错误信息-->
+		{% if field.errors%}
+			{% for error in field.errors%}
+				<span style="color:red">{{error}}</span>
+			{%endfor%}
+		{% endif %}		
+	</td>
+	</tr>	
 {% endfor %}
+<tr><td><input type="submit"  value = "用户注册" /> </td></tr>
 </table>
+</form>
+

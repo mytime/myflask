@@ -1,8 +1,10 @@
 #coding:utf8
-from wtforms import Form,TextField, PasswordField
+from flask_wtf import Form
+from wtforms import TextField, PasswordField
+from wtforms.validators import Required,Email,Length, EqualTo
 
 class RegistForm(Form):
-	username = TextField(u"用户名")
-	email = TextField(u"邮箱")
-	password = PasswordField(u"密码")
-	repassword = PasswordField(u"密码确认")
+	username = TextField(u"姓名", validators=[Required(u'用户名不能为空')])
+	email = TextField(u"邮箱", validators=[Required(u'邮件不能为空'),Email(u'无效邮址')])
+	password = PasswordField(u"密码", validators=[Length(message=u'长度不能少于6位', min=6 )])
+	repassword = PasswordField(u"密码确认", validators=[EqualTo('password',message=u'口令不匹配')])
