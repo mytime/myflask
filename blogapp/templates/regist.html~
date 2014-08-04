@@ -1,7 +1,9 @@
 <h1>用户注册</h1>
 <form method="post">
+{{form.hidden_tag()}}
 <table>
 {% for field in form %}
+{%if field.type != "CSRFTokenField"%}
 	<tr><td>{{field.label}}</td>
 	<td>{{field}}</td>
 	<td>
@@ -13,8 +15,22 @@
 		{% endif %}		
 	</td>
 	</tr>	
+{% endif %}
 {% endfor %}
 <tr><td><input type="submit"  value = "用户注册" /> </td></tr>
 </table>
 </form>
+{%with messages = get_flashed_messages()%}
+{%if messsages%}
+	<ul>
+		{%for message in messages%}
+			<li> {{message}}</li>
+		{%endfor%}
+	</ul>
+{%endif%}
+{%endwith%}
+
+
+
+
 

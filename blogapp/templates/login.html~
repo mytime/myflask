@@ -1,13 +1,13 @@
-<h1>用户注册</h1>
+<h1>用户登录</h1>
 <form method="post">
 {{form.hidden_tag()}}
 <table>
 {% for field in form %}
 {%if field.type != "CSRFTokenField"%}
-	<tr><td>{{field.label}}</td>
+	<tr>
+	<td>{{field.label}}</td>
 	<td>{{field}}</td>
 	<td>
-		<!--输出错误信息-->
 		{% if field.errors%}
 			{% for error in field.errors%}
 				<span style="color:red">{{error}}</span>
@@ -17,11 +17,17 @@
 	</tr>	
 {% endif %}
 {% endfor %}
-<tr><td><input type="submit"  value = "用户注册" /> </td></tr>
+<tr><td><input type="submit"  value = "用户登录" /> </td></tr>
 </table>
 </form>
-
-
-
-
+<!--用户不存在提示flash-->
+{% with messages = get_flashed_messages()%}
+{% if messages %}
+<ul>
+{% for message in messages %}
+<li>{{ message }}</li>
+{% endfor %}
+</ul>
+{% endif%}
+{% endwith %}
 
