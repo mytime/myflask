@@ -1,5 +1,5 @@
 #coding:utf8
-from flask import render_template, request, flash, redirect, url_for
+from flask import render_template, request, flash, redirect, url_for, session
 from blogapp import app
 from blogapp.forms import RegistForm, LoginForm
 
@@ -17,7 +17,11 @@ def get_salt(n=10):
 
 @app.route('/')
 def index():
-	return "<h1>hello blog ! </h1>"
+	if 'uid' in session:
+		user = User.query.filter_by(id=session['uid']).first()
+	else:
+		user = None	
+	return render_template('index.html', user=user)
 
 #注册方法
 @app.route('/regist', methods=['GET','POST'])
@@ -48,11 +52,15 @@ def login():
 			if user:
 				password_salt = hashlib.sha1(user.salt+password).hexdigest()
 				if password_salt == user.password:
-					return "login Ok!" 				
-			else:				
-				flash("username password not mathch !")			
+					session['uid'] = user.id
+					return redirect(url_for('index'))				
+				else:				
+					flash("username password not mathch !")	
+			else:
+				flask('username is not exist')		
 	return render_template('login.html',form=form)
 	
+
 
 	
 	

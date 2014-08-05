@@ -1,0 +1,5 @@
+{% if user%}
+<h1>Blog {{user.username}}</h1>
+{%else%}
+<h1><a href="/login">login</a></h1>
+{%endif%}
