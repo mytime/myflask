@@ -1,0 +1,19 @@
+<h1>发帖</h1>
+<form method="post">
+{{form.hidden_tag()}}
+<table>
+{% for field in form %}
+{%if field.type != "CSRFTokenField"%}
+	<tr><td>{{field.label}}</td>
+	<td>{{field}}</td>	
+	</tr>	
+{% endif %}
+{% endfor %}
+<tr><td><input type="submit"  value = "发帖" /> </td></tr>
+</table>
+</form>
+
+
+
+
+

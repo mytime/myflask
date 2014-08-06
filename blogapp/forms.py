@@ -1,6 +1,6 @@
 #coding:utf8
 from flask_wtf import Form
-from wtforms import TextField, PasswordField
+from wtforms import TextField, PasswordField, TextAreaField
 from wtforms.validators import Required,Email,Length, EqualTo
 
 #注册框
@@ -15,7 +15,10 @@ class LoginForm(Form):
 	username = TextField(u"姓名", validators=[Required(u'用户名不能为空')])
 	password = PasswordField(u"密码", validators=[Length(message=u'长度不能少于6位', min=6 )])
 
-	
+#发帖
+class PostForm(Form):
+	title = TextField(u'标题')
+	content = TextAreaField(u'内容')
 	
 	
 	

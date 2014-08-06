@@ -1,5 +1,13 @@
 {% if user%}
 <h1>Blog {{user.username}}</h1>
+<div><a href="{{url_for('post_add')}}">发帖</a>
+| <a href="{{url_for('logout')}}">注销</a>
+</div>
 {%else%}
-<h1><a href="/login">login</a></h1>
+<h1><a href="{{url_for('login')}}">login</a></h1>
 {%endif%}
+<div>
+{%for post in posts%}
+	<li><a href="{{url_for('post_disp', postid=post.id)}}">{{post.title}}</a></li>
+{%endfor%}
+</div>
